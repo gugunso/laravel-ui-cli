@@ -1,0 +1,60 @@
+{
+    "name": "gugunso/laravel-ui-cli",
+    "authors": [
+        {
+            "name": "gugunso",
+            "email": "gugunso@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gugunso\\LaravelUiCli\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gugunso\\LaravelUiCli\\Test\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "mockery/mockery": "*",
+        "vimeo/psalm": "*",
+        "infection/infection": "*",
+        "maglnet/composer-require-checker": "*",
+        "slevomat/coding-standard": "*",
+        "squizlabs/php_codesniffer": "*",
+        "jakub-onderka/php-parallel-lint": "*",
+        "orchestra/testbench": "^6.18",
+        "phpmetrics/phpmetrics": "*",
+        "pdepend/pdepend": "*"
+    },
+    "scripts": {
+        "syntax": "phpdbg -qrr vendor/bin/parallel-lint ./src ./tests --exclude ./vendor",
+        "phpunit": "phpdbg -qrr vendor/bin/phpunit --coverage-html qa/coverage",
+        "infection": "vendor/bin/infection",
+        "psalm": "phpdbg -qrr vendor/bin/psalm --show-info=true",
+        "phpcs": "vendor/bin/phpcs  ./src --extensions=php --tab-width=4 -sp --standard=./ruleset.xml",
+        "phpcbf": "vendor/bin/phpcbf ./src --extensions=php --tab-width=4 -sp --standard=./ruleset.xml",
+        "pdpend": "vendor/bin/pdepend --summary-xml=/tmp/summary.xml --jdepend-chart=./qa/pdpend/jdepend.svg --overview-pyramid=./qa/pdpend/pyramid.svg ./src",
+        "phpmetrics": "vendor/bin/phpmetrics --report-html=qa/phpmetrics/report src/",
+        "qa": [
+            "composer syntax",
+            "composer psalm",
+            "composer phpcs",
+            "composer phpunit",
+            "composer infection"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gugunso\\LaravelUiCli\\ServiceProvider"
+            ]
+        }
+    }
+
+}
