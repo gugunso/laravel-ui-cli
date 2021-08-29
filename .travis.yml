@@ -1,9 +1,8 @@
 language: php
 env:
   global:
-    - CC_TEST_REPORTER_ID=6fd43930622a35b08b18d1463bceb9fd78ccaec3bfb11b088e7bacf3ae56b9f2
+    - CC_TEST_REPORTER_ID=${CC_TEST_REPORTER_ID}
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
-  CC_TEST_REPORTER_ID
 matrix:
   include:
     - php: '7.3'
