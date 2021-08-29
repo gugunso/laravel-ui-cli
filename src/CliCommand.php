@@ -23,6 +23,14 @@ abstract class CliCommand extends Command implements CliCommandInterface
     private $cliHandler;
 
     /**
+     * CliCommand constructor.
+     */
+    final public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int
@@ -55,7 +63,7 @@ abstract class CliCommand extends Command implements CliCommandInterface
     protected function createCliParameter($argument): CliParameterInterface
     {
         if ($className = $this->getParameterClassName()) {
-            if(!class_exists($className)){
+            if (!class_exists($className)) {
                 throw new \Exception('');
             }
             $object = new $className($argument);
